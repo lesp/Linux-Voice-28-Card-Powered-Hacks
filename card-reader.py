@@ -1,4 +1,4 @@
-form gpiozero import Button, LED, Buzzer
+from gpiozero import Button, LED, Buzzer
 from time import sleep
 from mcpi.minecraft import Minecraft
 from mcpi import block
@@ -19,15 +19,14 @@ def test():
 
 def flowers():
 	pos = mc.player.getTilePos()
-	below = mc.getBlock(pos.x, pos.y -1, pos.z)
-	mc.postToChat("Flowers everywhere!")
-	mc.setBlock(pos.x, below, pos.z, block.FLOWER_YELLOW)
+	mc.setBlock(pos.x, pos.y +3, pos.z, block.FLOWER_YELLOW)
 
 def lightshow():
 	led.blink(n=3)
 	buzzer.beep(n=3)
 	mc.postToChat("Lots of blinking lights, lets now open a browser window!")
 	subprocess.call(["epiphany","http://linuxvoice.com"])
+	sleep(5)
 
 
 def audio(file):
@@ -41,7 +40,7 @@ while True:
 		flowers()
 	elif peg2.is_pressed:
 		lightshow()
-	elif peg3.is_pressed():
+	elif peg3.is_pressed:
 		audio("LV.wav")
 	else:
 		test()
