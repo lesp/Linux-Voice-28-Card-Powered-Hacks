@@ -34,13 +34,15 @@ def audio(file):
     sound = pygame.mixer.music.load(file)
     pygame.mixer.music.play(1)
     mc.postToChat("You're now listening to "+(file))
-
-while True:
-	if peg1.is_pressed:
-		flowers()
-	elif peg2.is_pressed:
-		lightshow()
-	elif peg3.is_pressed:
-		audio("LV.wav")
-	else:
-		test()
+try:
+	while True:
+		if peg1.is_pressed:
+			flowers()
+		elif peg2.is_pressed:
+			lightshow()
+		elif peg3.is_pressed:
+			audio("LV.wav")
+		else:
+			test()
+except KeyboardInterrupt:
+	print("EXIT - Bye bye")
